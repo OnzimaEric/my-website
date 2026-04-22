@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protevia International - Safety Beyond Borders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1a5a9e;
+            --deep-blue: #0d3b66;
+            --accent-orange: #f2811d;
+            --light-blue: #4a90d9;
+            --off-white: #fafbfc;
+            --gray-100: #f5f7fa;
+            --gray-200: #e8ecf1;
+            --gray-300: #d1d9e3;
+            --gray-700: #4a5568;
+            --gray-900: #1a202c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--gray-900);
+            overflow-x: hidden;
+            background: var(--off-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-orange), #ff9d4d);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(242, 129, 29, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(242, 129, 29, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 90px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 50%, var(--light-blue) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(242, 129, 29, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-orange);
+            display: block;
+            font-size: 3.5rem;
+            margin-top: 0.5rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: white;
+            border: 2px solid var(--accent-orange);
+            box-shadow: 0 6px 25px rgba(242, 129, 29, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(242, 129, 29, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .shield-icon {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 3rem 0;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            background: var(--gray-100);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--deep-blue);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(26, 90, 158, 0.2);
+        }
+
+        .service-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .mission-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .mission-image {
+            position: relative;
+        }
+
+        .mission-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .mission-content h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--deep-blue);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .mission-content p {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .value-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .value-text h4 {
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .value-text p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 8rem 0;
+            background: var(--deep-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(242, 129, 29, 0.1) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .impact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .impact-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .impact-header h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .impact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .impact-description {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--accent-orange), #ff9d4d);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-content h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--accent-orange);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-white:hover {
+            background: white;
+            color: var(--accent-orange);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-blue);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 2.8rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .mission-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+            }
+
+            .mission-values {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="data:image/png;base64,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...< truncated 623984 characters >...Sy5pLcsFdH1Oj7V9dhAbwdeQXYP8gN/C+q+pvxZrvK+GuK0uPLjH4RF6YK3ng/ObvaNkoSl4YkgzwF/nAuQc/20YgHu6YF3TdJJz4ICXTP3+xv5QXamD6Dqx6NE+8NLFQdMLF6Aqw9SxBV31SlPaNQsh7IreO2n2Qb60/akL4eLLCzIlVMPpGJ+NVlk0Zx+odXJOAkWnzN4D4GMA7GdzLxhakOWag9lXcTsXQ5wF6IKMQNa9q2cNz4C2SHqcryG8ALWDfEwG2K1FjF9qgY7ZtRaewnAMFCEhGo5Z/owjLb48ncBNaHK4v2GgFm6Clpxr7Zr9utvgPU9kon+NOcCtyF0XlqYeFO1PzVvP4Wu9caqvcn4flIH5KKRBWrgKKe//zPO94/xijudc2WtZ5fEGAUndmHSiPC2HLvDvrd+A8fZ6HvAwN5jrR47Rwv2wPL7/TJbqFgNgbwMwRgDH9tfHkTZyde+yBa51T4qd8nu45Syd9QmoKV3XHgbRIeFK9Mw7tI7y3rjukoqj6H6ZRsys1y7p1AO6QQK9N2yB2F5yCsU5vBcWTi8tu4y2GABzFZh7zvvt+X9naARXOA8efDrfJd05MK/1pcjeB1ufAy+DgZvWFOWbUXfOIH6Zr95CoyntSO4aLYAe56FqK0WniCG7Y2vtiDSuO3ZnOLnux31skPrMBesJoX5+f7ZEQMqkA/L3gNoggErH8uX6Kml9+h4AFE+QAfopzWIT+cI4wBpHEWoCxf+NMOQ6uG3OBTzzd3pP3XQhwA0Q4/rOdX+5vXXHFZe0Lzx75bPV83X/xHk/9eYq/TnC/S/05P5pgc+lAT3WUlexrLYlC3nES1ta7KphAqj5gQPb5yINsfWl3AzT2GAz18ClsLukUxzkoe7DxKVSDT0MN3fwEu4fe0s8fkJPQk0cD2BiAD5/2z0AyB6+5QfduQcggzFDge+AvrD4J1hfersxDWIBeENw3AHEQYd7zx4fOZa34EH+czP2Qxuzc/Rl4bvjdnlQaix6Jqnjnkyx6WbQjrfAbX1k6ZiaLvoR/LzmXTN6YBJUgO+WE1H/eZYfGP/Cy4AtWg/AzAPat/2qhiWaQ3xPGaMvrvQWLGOumIRnj6aWiHJq5Hnvg2nFGd7e2dov47Ze5EN744cPcf95E8JTqVrTlIeVVfaBGOmd+twPDbQ510I9ZJH/Z3MA/ektBZC/DcAOqnMD2sMzqPWFBKJ5UiA978yIB8w1bPEIzPftDRgHMBSxFFssDJR8v1P7wk0Ywu9/BJrQD2wrlehZ0qOR4hEPam9wCNDpKXiQZ1+iM+1WaZ5+TrAbYov6JY3Wn8kDSNyH70fZuF8XR2aSAllhQD9yGIbAmWHDtzfu6nTUjP3v12hc8qBD81b0yJmysLCLl3D/Fsytu0N/D+7g2uCPHm0YH6l8r92qmu/4mKzdty+e75byx+n9vS+m34bRhakYGQlhQiP0lQ0+yf1XPTPoPOSNIM3Xj55oaF4PMUbiJS5hCxeDuZzhD88OAh6qjxe0p7bwQQZH38bmjrZGdnBvciTtf44/XjhkZ8N34/b9PQBGCHArTG3fCdFZ6P1U8MiM7lGzNTi/0kZfhydMz+3rup1YjNbCe6Gv3J66c/lPxAOWa567mbSD5c0e7YC+gHur1ZoP4kWUasYIbRtNLrpxWBT6OTIEBejX5vzcfn4cy+/CAHK3AHAxAmH8UUjh5ZvqYuwGSbSqJRWtdtdCjY3d826Za5iAHoexqwgRubX95+KN+smZk+7HWnoyVDe7NuYYgzjI+AzSjCnE+NvHSn0m8gDUcBOwPwhBH+Ye8TmBon2T4vsH738eUzd+ZNyommI3DN2IpfKvTQjPMsP3CPdcYtixZfzUscKhqBOZ9UVM1OwL/K8mGo0Y6gE+Op2xnHvLQeK7TQyAoXob8TOXAVvXf6U/4fNOWQ/QDM3b8jGxK5er/ir52FB419UmOPS+cKU9fkHeJQ7F6YbidTKpx/BlmLq/Jd6TTPKcsb8TCWlYCG8+1DPOHUMscrNT7AF9bOi/99qRKYTCv7/KpgFy34Sx0/4f2tgBttsCzL/MkKa0qpkMxAMgd7vZRORyZNSq2xFHvs1OP+p/u9vrgZF5Nq5Xvasy3f+B9jx+sga39B5w7Yh/xklyuLbsTtzTBH2H/1Xzrs5l5dMFptH4T0OhN7+X2bbxUMxrxLsCxgXIJALdggC2H5EYbi8IMCMLsQF0WDPrbxgCijybljPGGMDTYdj/TbpsODW3M/0MTJtYcOPVwkVYFuRC6Nkbhp5jMsBQtGKQge80JhcP9VxOa6rPsrhyAak7rEapDk409ZdDbZeAbbTP8PfhJg7P5FvVLAQNGPbMWgQES3pG5Z575nMPRpJMnoNy9TZmf80KtGiprel5ffpZDNWYudwzTmI3zjhvQR5tIT2FZp4qtYJ9r6wHjsVnZAh9D5jt9xlzFxOf8uVcwrDNBUaxY2+9x/S0I/wtwM7Xf7MFWFef7SvjGwT+GYZJM5YC7wm0J1sDP5d75nMDhtf3PAoiF97bHX+EzS9GyIg2yoXMKXVyfMTXY0MTPj+YFPoM7uF8zPpjyGZzL6/Hr43pchiITvPlMQZDyfmY16oNk4ivuZh9C++qCOOYrsHn9zYoIwAEzxhYKJuuH516G9sfXrHLMOUuuYZ1gSH2WewNMd73+iB1ZqZk5FvkMhd22fFjRaW+ZKtCnIthlWc92oPH/ML+6sHLZSmk2IfZmaoqS0jDzl7Gh9UyJ0PJuofpD45ohwPo2WDBXZmongyJG43O91RqiNQAAA8uSURBVIOyLkBukZE1Ys0BW2CAC/8FT6CEFjOTyfteP5/CZ5ZQ2AQZH/fM2nDuZQk9U+08ijbfawTUFEGJOVo2UFMn0eoBPF+dOF3m15GKyrCL81PGGT9jEtlumhFM8Xl4XmDPMmIy4ER33CZIJQi0+nzVeXe7kxBPBPhmt7qhpviM+YWdLw9W1KZ4BtZlfP+3koYitSxHGbSQkqeuScLDX/pPx/8bZx8XDBB0/3pXo5Y6HUF5kGtKB5QcXUxeXPi0OCmZnJ163kWVkAIO2g1iPXG0R/QFa28vIH77Efd3zGQO9wIraZqPjKjjZxqjwPRbYljWmCtdvI7p6VPPM1kdb95RTr46mDzWHmeWUEY4L3cpuQDtCYjNzeYytJEzHI/tmaobBn1lSo55j/zaxrrQORf/jirqkZ6oMF+MSsfh/vBZj0TPy2DS9kduOyXg63lL9f/7+2OuAXbfxJbOSHXJ3Bh2P5N/ss3Xh+kRT3dR+Yr7mvHSbtswVmnV6ykl+m45cX7cTv1NrYdYES6sK8g3lZ2vvEKdn9bmggv3VDRSUd+P0Py4X5m9EF6SLtt+jAzgxsQaEaX52n0dI0+p4xu+4s/wFVgyyRPoUWn9SM9H9FAd3VZsGR+mCZk9ztop9ibD6WbeHcdKAEsuTHE0v3n6KZ5Zu6Y5dXR+O0m2rcq0hNNKAGhzIHKaXj8H9nvvY1dEaj2Ljx04Z/s1fk/TVITMGV2IqudjvqtJFSIdy9QuQkl788Dgn0TmLLM7b/sgnUHlc0HOuv9YUbHcZJ8P39t7w8hTO6HAYRy3PKO7h81JpBojOvvmX2kOdV+x7Bl1YXvirWV/b6sqsOU+Fa1Ujth4sXBBMA7LOBxb6UXbbEniKvBnsANs9+4RtvNRcBOLA4xqOknHylGmzNYurUJeSUCXhLoM7wNrKSwgRH7dYeEm1b1UMaGHOcJdwpsZt+xC329IxZhfBTRffO586orci+ybiHk9ri1RF45bwzLtTkCrKByhGceJY5ev9xYmdwVd8cw60J2ee6F0bDKSTPwYO5tq23/g+bxpIlNFFf0Xb09LcfYqUU6sF+hN7nZohdmPziOVnlQljAt/ZrMk/Pz+wmHmLv/1ex2k/USnC9Sc9BlRN5PocKoDKdmupDGx7CSqK1JyQtyGEnVOrDQsJygZFZ24NHfLTKlnDqhXM2XutGBvDcQ6CbzSd6sQ2uPWs2EFKG+W7n6uKtFOVqgvREUYWRrvNVp9vt6StvVApu8l47C7/ndnOZKmktWJ67x2fToD0gkmJfNsRl2aMTwUDu/urhG/552j/xbNHYf3Ti3KzR0C2SW/5cJz9fpyMuaskvkq8TrA7SkfqzOq3Dz9J0/QcUidR+Umo8J1vnuuHdgsqf2SQu0+reIT4u7ofYPxDj8Q80XliIl8+bzk+YS4PazYzLlfsq4y/IPYHowqrfThNSCi4mwCJaLlZiI94i4r4kdVfb6bLgtl/DH/mTvBfHGSHzfb+fB35l/FvietRJ9j8SuF/GqLf7Ly4y8zYl/Kfz1P8VNti3ta299Mm8vHsKRT+TZUtVNodrQGSm43hG8yh25q4sz9dnrj/k26W/s32BjpvBa5/RhTDfEZcb2FZhk9smlbrlO4QYf3SEOwNZ/ZU3g6Uis2U744zrsxW+JeKJmvVPVmoqykxr7ntCVPc/IV5k8LkcCKf2KPxeWkqFBcTlD2SuWL7URf7/S3UGWVejfFoAhnjW93oUu3yLg4MZ0ctWEwM+uNZZ8sp/xyYwrehD5W0YE8/bc3BbHzPl4PIj/wOfG53Juu5PzK0A22XzKko0Tq+xQ/s9tm9lUq7iLPJ7BVV3KGZtqTogOfAmeq3f0rjk88L+pQXWLJGBlFSebLjHS3O+9xmzNDHazp23mEWBhKl5hkHncBXef7+ajf31/HBpnU/8EGTt48Zhsqka1jETa1UkVDVYmWMVN+5kiID+ZU2zLtZM/E5acglr97ZIrticssX+Wp9mRWM5R/UhVdclp/0uuBdlNo/i7V2zWM1qn8k+0kPnV4w2fWWwn1aQtRrXKmysyeEvVYtXSGrZ/MNIm65PAZ7JbUoSkmMpnTK0VPUt2JG1+4f6vUV/KcRu0U25CngSIy7+4uot0xLPTUz9PGuK6SNqTKL1SdZtSlMR2IH8uLxLucRwmTHW92kdHpN79iOZlzNrWeU+PJymfnV+b53fO9ZA2UcIdVay/oc7P0R0SJSSdDb8v5n90G5D/Xnr/ssfhdlX29cA3EnS3hb6vOO/+ijwbwj8bNy0hlQYrfBAAb6GOsCRo9KU7tt97yUrg9CjmbXWtLIalNzUSJDFdl6dNo3EpIfzlpw+Wrmv7+uec31hPL1iV2jHLrLf4exvZLyesue7S7lrJtMDKt/a3wZ1dafj1Xfc5TAT6eGyvpcx+Ftm3vqQT3f/hzKyTGFsUDopazf4rrP3NssDWT6WP+eCtfn+nPRgQw82XLxms4riv1/W57mtA9cT1n2I74Xcb6MJr/R+cxV2Z0rLVazyVjkjjtDr67+zlPQ46dR+VnRKu1tPvZ8gZV5+MBunTNeihpf7wXYhSuq/xxln9e781vfO6Ur428qvQkT1UyFyV7p4q275aPUxTqdJmsv8f6XsWPpZ4RJAR/Hhl9PQmzKxkTkvzzv+/n82v/bJ8Jpen0fmCDiJ8kDaUfVPoxUT7LIxbTxQKFugznG9crpwCX+iuuFRwjpaMC/9LiLPmCtm13SMU/paB525T84tYWEq9RSBNxm1njdxPWxms085mVn1453k5mnnbju312Jxl6XqJ+/rvU+sRrgy0kvOaF9eNMuWHbscB6tGlRwWZtuHKsU4KLO00sLDOPqDsQ32NMfcbRLxzs8URsMgp+n40/XBoeuh8PwieiccIyQOMcD0KePuwtAJkUiHtZnF+YBCyeiX2MP6dIkDie8V/F59laStH3PD3M9ldoMzufxDIjvt/4pkbrh6zyzHpOkLMUid4dQ1Z1ai/HXUtVIZyJEgkJX6LPmvcXDnPSR05vYf/SbS7m147oc2hT/Hx6vFn5O9z73v4iKR7ywtLuHMXfk6FOty0z1xkyEtNzuQ2472g9wLwl17idYLoGcIGZ9ekOlMR+2SWPbPPiJuEyUzsI9Zc3IqZLMb3Ve2eBTM/RsZW/O8g/7+LtUoeISlWUaHDS7CBNRJ6/LZkjvkeAfwiMTWgVGxO5TJPof1M8freffz6UIJAX4J6+jiHdfn5tQmAz9PHnjyH3XxtRYH7C96acv+3Xn/nePmO+cCPGyRo7Ssgo/IXv3buoLvTZANpg+wjPsPJt6eZqZN8eqJeWHwghbrN5IixNX5fd0l83tvazmR5cvh9rXC/MWVA3hvagMSTj7NrzlyTBYY62v5rx/2oznNB+9zQip75eT7l8UmgUTBu2ul0zvna8HmBs3bpCa8OvPfPZPc9JbWgbW1dkbEk52+etj1rZJWM//8FntE5Mf91ABFuBEa/NuuXzRbeZmyO6htW2udwzmrRNKzvmdv1vnxVpj1k/39Aed3zaUUZ1abrezLyj9WPnkRI6ND50L/wJpErvjD9eP3+2nWRN+o9kftn+sm1GezOiG6HanfXg1tXfH9rv8d4xz9jibfvNenCfo3rNHvFXIbr+or7/RTQNtR+32Z6vbpz9fCEahfplSrCKVpkefs3zdo6/ytPnj/4yGshpl6PVET3n8wJrFfVR/21nhKPheI5MS2CdA/2xfm0CjfV0A+iJuJ4J7ZKet3Nt67Jma1iTsPaAvsGeSunz8BlE15sdtxSdieaOtd/fpYn2I+qLpTlGGLfvwbkG+jmltps6gd46MkroOZovv7bx/nKaha0ul3Ig0Gf/+S99zup4zdv16fZ7fL6g9cbGGc44TmfYXLj2bAwK/R6A+84+OzqGaQusB8eH+P0Cc4H6DvsUaqLnLzn72Lt4L9t6cRvQvPN3PQ30e8CVk1t7eH3iemNehe13tG79HNk+Wmk89NfuozBfwfRHE5zBMzZu1MbZ+fHZ1pvZBWT9wAqw9Qba6HgmVr7vI/AnaP1ENIScL4guaXdG8LP446+55XuZlinQarw+yX6EOaVrAz+Pz4Jw1pD2IJrs2yzyb46fQfSWmHP9WeA2kRkTw/pv5RipSP/8M8+YL21t2oQG+z270Ve9kX/Li4CM+DUaQiv3GTOEk7HMmfTn9Yfuectfwk4wWffMibLNjPvefnb00LXBOqloTxHVH3nGlb+VttVrvzerykqjTu77QHsCtTNnp+Vb3Nm5fd6om+2X6bvlS8w42/5C+a4N20/bnq0Cu+MtQ+TO5j88PvZ0374Pn5U2hnVoPzK0m7677z/w2ZRv6iXj7yng1nBfl28bHjf47Or9/IW+u2e277dnnEQP74ax0tte/f6FMXeOEXA2wynl63L9NfPyp9X3o//M2WbbgPprn3dzh8oP44Pb757fTn1/2GGKBbs2BTRWLhyerzE/176/bkfBWEHb0Bp2NcP4uPE07bKLybXT6cUcfYQ1JrTHr+etTD+P4Qzze42Mv927YFpwBbhBidcD9Ne23+cmsmv7g/b19hM5CxL13neTZOxn1/c/UzFdk3T9+z0S9p1b5246w5jwZ1w72foxPQk0AfYIbr/Zg4aH8U/Ga4O+a/e+Wwm2HE+R/0wJn++2OAg99A5DsIY3bs8cj2F88Nr2fdmepOOwvUfmHfaC/kPle/oG4+bHyj4OjmZm7Zl2Ii4q0EOo159Vf3+/6rvtUxhboJ+MtqDzb5tlTCfR+gyf6buOu0W0KH5+6y/sQdseQg/hc6DP21zbNULoEt3vhqax88XtHU//MZ0Ehxh+drC+4375z4G3gLEy/QLZJpxfW7nmTLGSgCJ0j9Vr189WDj5P/wytJntEeB7OIM8xuXOK7RF7drt18tn2wMefI+RcRmdrOPcJbZfPfXpmSecLeQbRQ+AThLMjjBWuF/obzmU/nn8RPQ/7Aq1boD9QpqWfiF4h07/fL+703D4b6d381c4RyC2276ReYazw9/55v5bIeJp9gc4dx8mad4WxcnQMlRn6i/ZjmN9onbv1TOYdrSWgk+J5R8uP+kvoP4yPXcNhLjwvGmgF3e/O1qF9XJcVVuz5ZblTOr+w9uL+Wl4c9j6MFR4fTg8j/mF7PpyV8Tni+uI0RP57x1dvPKE7I9wEsHGzwoefHCNvmBp//77/A6mPTgXya1ldAAAAAElFTkSuQmCC" alt="Protevia International Logo" class="logo-img">
+                <span class="logo-text">PROTEVIA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#mission">About Us</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="cta-button">Get Involved</button></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Protecting Lives,
+                    <span>Safety Beyond Borders</span>
+                </h1>
+                <p>
+                    Protevia International is a global NGO dedicated to advancing health, safety, and environmental standards across communities worldwide. Together, we build safer futures.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#mission" class="btn-primary">Learn More</a>
+                    <a href="#contact" class="btn-secondary">Partner With Us</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <svg class="shield-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0.9);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path d="M100,20 L160,50 L160,110 Q160,160 100,180 Q40,160 40,110 L40,50 Z" 
+                          fill="url(#shieldGrad)" 
+                          stroke="rgba(255,255,255,0.8)" 
+                          stroke-width="3"
+                          filter="url(#glow)"/>
+                    <path d="M75,95 L90,110 L125,75" 
+                          fill="none" 
+                          stroke="rgba(242,129,29,1)" 
+                          stroke-width="6" 
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <circle cx="100" cy="100" r="45" 
+                            fill="none" 
+                            stroke="rgba(255,255,255,0.4)" 
+                            stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Countries Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500K+</span>
+                <span class="stat-label">Lives Impacted</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Safety Programs</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">200+</span>
+                <span class="stat-label">Partner Organizations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-label">What We Do</div>
+            <h2 class="section-title">Comprehensive Safety Solutions</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3 class="service-title">Occupational Health</h3>
+                <p class="service-description">
+                    Implementing workplace health programs that protect employees and promote wellness through preventive care, health screenings, and safety protocols.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚠️</div>
+                <h3 class="service-title">Safety Management</h3>
+                <p class="service-description">
+                    Developing comprehensive safety systems and training programs that reduce workplace hazards and create cultures of safety awareness.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3 class="service-title">Environmental Protection</h3>
+                <p class="service-description">
+                    Advancing sustainable practices and environmental compliance to protect ecosystems and communities from pollution and environmental degradation.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📚</div>
+                <h3 class="service-title">Training & Education</h3>
+                <p class="service-description">
+                    Empowering communities through comprehensive HSE training, certification programs, and educational workshops across all sectors.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3 class="service-title">Risk Assessment</h3>
+                <p class="service-description">
+                    Conducting thorough evaluations to identify potential hazards and implement evidence-based strategies to mitigate risks effectively.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3 class="service-title">Community Outreach</h3>
+                <p class="service-description">
+                    Building partnerships with local communities to address unique safety challenges and promote sustainable health and safety practices.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="mission-container">
+            <div class="mission-image">
+                <svg width="100%" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a5a9e;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="500" height="400" fill="url(#bgGrad)" rx="20"/>
+                    <circle cx="250" cy="200" r="80" fill="rgba(242,129,29,0.3)" opacity="0.6"/>
+                    <circle cx="250" cy="200" r="60" fill="rgba(255,255,255,0.2)" opacity="0.8"/>
+                    <path d="M250,160 L270,200 L250,240 L230,200 Z" fill="white" opacity="0.9"/>
+                    <circle cx="150" cy="120" r="30" fill="rgba(255,255,255,0.15)"/>
+                    <circle cx="350" cy="280" r="40" fill="rgba(255,255,255,0.15)"/>
+                    <text x="250" y="350" text-anchor="middle" fill="white" font-size="24" font-weight="700" font-family="Sora">PROTEVIA</text>
+                </svg>
+            </div>
+            <div class="mission-content">
+                <h2>Our Mission & Vision</h2>
+                <p>
+                    At Protevia International, we believe that everyone deserves to work and live in safe, healthy environments. Our mission is to eliminate preventable workplace injuries and environmental hazards through education, advocacy, and action.
+                </p>
+                <p>
+                    We envision a world where safety transcends borders, where communities are empowered with knowledge, and where sustainable practices protect both people and planet for generations to come.
+                </p>
+                <div class="mission-values">
+                    <div class="value-item">
+                        <div class="value-icon">✓</div>
+                        <div class="value-text">
+                            <h4>Excellence</h4>
+                            <p>Delivering world-class safety standards</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🌟</div>
+                        <div class="value-text">
+                            <h4>Innovation</h4>
+                            <p>Pioneering new safety solutions</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🤝</div>
+                        <div class="value-text">
+                            <h4>Collaboration</h4>
+                            <p>Building global partnerships</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">💚</div>
+                        <div class="value-text">
+                            <h4>Sustainability</h4>
+                            <p>Protecting our shared environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+        <div class="impact-container">
+            <div class="impact-header">
+                <h2>Creating Global Impact</h2>
+                <p>Through dedication and collaboration, we're making the world a safer place, one community at a time.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">🎯</div>
+                    <h3 class="impact-title">Prevention First</h3>
+                    <p class="impact-description">
+                        Proactive programs that prevent accidents before they happen, saving lives and reducing suffering worldwide.
+                    </p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">👥</div>
+                    <h3 class="impact-title">Community Empowerment</h3>
+                    <p class="impact-description">
+                        Training local leaders and workers to become safety champions in their own communities.
+                    </p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">📊</div>
+                    <h3 class="impact-title">Measurable Results</h3>
+                    <p class="impact-description">
+                        Data-driven approaches that demonstrate real improvements in safety metrics and environmental quality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Join Us in Making a Difference</h2>
+            <p>Your support helps us extend our reach and save more lives. Together, we can build a safer world.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-white">Become a Partner</a>
+                <a href="#" class="btn-outline-white">Donate Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <h3>PROTEVIA INTERNATIONAL</h3>
+                    <p>Safety Beyond Borders - Committed to creating healthier, safer environments for all.</p>
+                    <div class="social-links">
+                        <div class="social-icon">📘</div>
+                        <div class="social-icon">🐦</div>
+                        <div class="social-icon">📷</div>
+                        <div class="social-icon">💼</div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#mission">About Us</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@protevia.org">info@protevia.org</a></li>
+                        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Protevia International. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString() + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const match = text.match(/(\d+)/);
+                        if (match) {
+                            const endValue = parseInt(match[1]);
+                            const suffix = text.replace(/\d+/, '');
+                            stat.dataset.suffix = suffix;
+                            animateValue(stat, 0, endValue, 2000);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats-container');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Intersection Observer for fade-in animations
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .impact-card, .value-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
