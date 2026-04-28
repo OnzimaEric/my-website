@@ -1,1225 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protevia International - Safety Beyond Borders</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #1a5a9e;
-            --deep-blue: #0d3b66;
-            --accent-orange: #f2811d;
-            --light-blue: #4a90d9;
-            --off-white: #fafbfc;
-            --gray-100: #f5f7fa;
-            --gray-200: #e8ecf1;
-            --gray-300: #d1d9e3;
-            --gray-700: #4a5568;
-            --gray-900: #1a202c;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Work Sans', -apple-system, sans-serif;
-            line-height: 1.7;
-            color: var(--gray-900);
-            overflow-x: hidden;
-            background: var(--off-white);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 90px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-img {
-            width: auto;
-            height: 93px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-blue);
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray-700);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-orange);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent-orange), #ff9d4d);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(242, 129, 29, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(242, 129, 29, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 90px;
-            min-height: 90vh;
-            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 50%, var(--light-blue) 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            color: white;
-        }
-
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(242, 129, 29, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-text h1 span {
-            color: var(--accent-orange);
-            display: block;
-            font-size: 3.5rem;
-            margin-top: 0.5rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-text p {
-            font-size: 1.25rem;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--accent-orange);
-            color: white;
-            border: 2px solid var(--accent-orange);
-            box-shadow: 0 6px 25px rgba(242, 129, 29, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(242, 129, 29, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary-blue);
-        }
-
-        .hero-visual {
-            position: relative;
-            animation: fadeInRight 1s ease-out 0.3s both;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .shield-icon {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Stats Section */
-        .stats {
-            background: white;
-            padding: 3rem 0;
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
-            padding: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Sora', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-blue);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray-700);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 8rem 0;
-            background: var(--gray-100);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--deep-blue);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .services-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            transition: all 0.4s ease;
-            border: 1px solid var(--gray-200);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover:before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 30px rgba(26, 90, 158, 0.2);
-        }
-
-        .service-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--deep-blue);
-            margin-bottom: 1rem;
-        }
-
-        .service-description {
-            color: var(--gray-700);
-            line-height: 1.7;
-        }
-
-        /* Mission Section */
-        .mission {
-            padding: 8rem 0;
-            background: white;
-        }
-
-        .mission-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .mission-image {
-            position: relative;
-        }
-
-        .mission-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .mission-content h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--deep-blue);
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .mission-content p {
-            color: var(--gray-700);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .mission-values {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .value-item {
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-        }
-
-        .value-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--accent-orange);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .value-text h4 {
-            font-weight: 700;
-            color: var(--deep-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .value-text p {
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        /* Impact Section */
-        .impact {
-            padding: 8rem 0;
-            background: var(--deep-blue);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .impact:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 70% 30%, rgba(242, 129, 29, 0.1) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .impact-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .impact-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .impact-header h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .impact-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-        }
-
-        .impact-card {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .impact-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .impact-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .impact-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .impact-description {
-            opacity: 0.9;
-            line-height: 1.7;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, var(--accent-orange), #ff9d4d);
-            text-align: center;
-            color: white;
-        }
-
-        .cta-content h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .cta-content p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--accent-orange);
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-outline-white {
-            background: transparent;
-            color: white;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 700;
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-outline-white:hover {
-            background: white;
-            color: var(--accent-orange);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--deep-blue);
-            color: white;
-            padding: 5rem 0 2rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-brand h3 {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            opacity: 0.8;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .social-icon:hover {
-            background: var(--accent-orange);
-            transform: translateY(-3px);
-        }
-
-        .footer-links h4 {
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-orange);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--primary-blue);
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 3.5rem;
-            }
-
-            .hero-text h1 span {
-                font-size: 2.8rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .mission-container {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text h1 span {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1.5rem;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-            }
-
-            .hero-buttons, .cta-buttons {
-                flex-direction: column;
-            }
-
-            .mission-values {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-content h2 {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protevia International - Safety Beyond Borders</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a5a9e;--deep:#0d3b66;--orange:#f2811d;--light:#4a90d9;--off:#fafbfc;--g1:#f5f7fa;--g2:#e8ecf1;--g7:#4a5568;--g9:#1a202c}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;line-height:1.7;color:var(--g9);overflow-x:hidden;background:var(--off)}
+
+/* ===== PARTICLES ===== */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;border-radius:50%;opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:.6}90%{opacity:.2}100%{opacity:0;transform:translateY(-10vh) scale(1.5)}}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);z-index:1000;border-bottom:1px solid var(--g2);transition:.3s}
+nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.1)}
+.nav-container{max-width:1400px;margin:0 auto;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;height:85px}
+.logo-wrap{display:flex;align-items:center;gap:.8rem}
+.logo-img{height:80px;width:auto;object-fit:contain}
+.logo-text{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue);letter-spacing:-.02em}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--g7);font-weight:500;font-size:.92rem;transition:.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--orange);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:linear-gradient(135deg,var(--orange),#ff9d4d);color:#fff;padding:.7rem 1.8rem;border-radius:50px;font-weight:600;border:none;cursor:pointer;transition:.3s;box-shadow:0 4px 15px rgba(242,129,29,.35);font-size:.9rem}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(242,129,29,.5)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:26px;height:3px;background:var(--blue);border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+.mobile-nav{display:none;position:fixed;top:85px;left:0;right:0;background:#fff;border-bottom:2px solid var(--g2);padding:1.5rem 2rem;z-index:999;flex-direction:column;gap:1rem;box-shadow:0 8px 30px rgba(0,0,0,.1)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:var(--g7);text-decoration:none;font-weight:500;padding:.5rem 0;border-bottom:1px solid var(--g2)}
+.mobile-nav button{background:var(--orange);color:#fff;border:none;padding:.8rem;border-radius:50px;font-weight:600;cursor:pointer;margin-top:.5rem}
+
+/* ===== HERO ===== */
+.hero{margin-top:85px;min-height:92vh;background:linear-gradient(135deg,var(--deep) 0%,var(--blue) 55%,var(--light) 100%);position:relative;overflow:hidden;display:flex;align-items:center;color:#fff}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 12s ease-in-out infinite}
+.orb1{width:600px;height:600px;background:rgba(242,129,29,.18);top:-100px;right:-100px;animation-delay:0s}
+.orb2{width:400px;height:400px;background:rgba(255,255,255,.08);bottom:-50px;left:10%;animation-delay:-4s}
+.orb3{width:300px;height:300px;background:rgba(74,144,217,.25);top:50%;left:50%;animation-delay:-8s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{max-width:1400px;margin:0 auto;padding:0 3rem;position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:.4rem 1.2rem;font-size:.85rem;font-weight:600;margin-bottom:1.5rem;backdrop-filter:blur(10px);animation:fadeInUp .6s ease both}
+.hero-badge::before{content:'';width:8px;height:8px;background:#4ade80;border-radius:50%;box-shadow:0 0 0 0 rgba(74,222,128,.5);animation:ping 2s infinite}
+@keyframes ping{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{box-shadow:0 0 0 8px rgba(74,222,128,0)}}
+.hero-text h1{font-family:'Sora',sans-serif;font-size:4.2rem;font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;animation:fadeInUp .8s ease .1s both}
+.hero-text h1 .orange{color:var(--orange)}
+.hero-text p{font-size:1.2rem;line-height:1.85;margin-bottom:2.5rem;opacity:.92;animation:fadeInUp .8s ease .2s both;max-width:520px}
+.hero-btns{display:flex;gap:1.2rem;animation:fadeInUp .8s ease .3s both;flex-wrap:wrap}
+.btn-hero-primary{background:var(--orange);color:#fff;padding:1rem 2.5rem;border-radius:50px;font-weight:700;border:none;cursor:pointer;transition:.3s;box-shadow:0 8px 25px rgba(242,129,29,.45);font-size:1rem;text-decoration:none;display:inline-block}
+.btn-hero-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(242,129,29,.6)}
+.btn-hero-secondary{background:rgba(255,255,255,.12);color:#fff;padding:1rem 2.5rem;border-radius:50px;font-weight:600;border:2px solid rgba(255,255,255,.5);cursor:pointer;transition:.3s;font-size:1rem;text-decoration:none;display:inline-block;backdrop-filter:blur(10px)}
+.btn-hero-secondary:hover{background:#fff;color:var(--blue)}
+.hero-visual{display:flex;justify-content:center;align-items:center;animation:fadeInRight 1s ease .3s both}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+.shield-wrap{position:relative;width:360px;height:360px}
+.shield-svg{width:100%;height:100%;filter:drop-shadow(0 20px 60px rgba(0,0,0,.3));animation:shieldFloat 6s ease-in-out infinite}
+@keyframes shieldFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.shield-ring{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.15);animation:expand 4s ease-in-out infinite}
+.ring1{inset:-20px;animation-delay:0s}
+.ring2{inset:-50px;animation-delay:-1.3s;border-style:dashed}
+.ring3{inset:-90px;animation-delay:-2.6s}
+@keyframes expand{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.05);opacity:.3}}
+.floating-tag{position:absolute;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:.6rem 1rem;font-size:.8rem;font-weight:600;color:#fff;white-space:nowrap}
+.tag1{top:10%;right:-10%;animation:tagFloat 5s ease-in-out infinite}
+.tag2{bottom:20%;left:-15%;animation:tagFloat 5s ease-in-out infinite .8s}
+.tag3{bottom:5%;right:0%;animation:tagFloat 5s ease-in-out infinite 1.6s}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== STATS ===== */
+.stats{background:#fff;padding:2rem 0;margin-top:-60px;position:relative;z-index:10}
+.stats-box{max-width:1100px;margin:0 auto;padding:2.5rem 3rem;background:#fff;border-radius:24px;box-shadow:0 15px 70px rgba(0,0,0,.1);display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.stat-item{text-align:center;position:relative}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--g2)}
+.stat-num{font-family:'Sora',sans-serif;font-size:2.8rem;font-weight:800;color:var(--blue);display:block;margin-bottom:.3rem}
+.stat-lbl{color:var(--g7);font-weight:500;font-size:.9rem}
+
+/* ===== SECTION BASE ===== */
+.section-label{font-size:.82rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.18em;margin-bottom:.8rem}
+.section-title{font-family:'Sora',sans-serif;font-size:2.8rem;font-weight:800;color:var(--deep);line-height:1.2;letter-spacing:-.02em}
+.section-sub{color:var(--g7);font-size:1.05rem;margin-top:.8rem;max-width:600px;margin-left:auto;margin-right:auto}
+.section-header{text-align:center;margin-bottom:4.5rem}
+
+/* ===== SERVICES ===== */
+.services{padding:8rem 0;background:var(--g1);position:relative;overflow:hidden}
+.services::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,90,158,.06),transparent 70%);border-radius:50%}
+.services-grid{max-width:1400px;margin:0 auto;padding:0 3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+.service-card{background:#fff;border-radius:20px;padding:2.5rem;transition:.4s;border:1px solid var(--g2);position:relative;overflow:hidden;cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--orange));transform:scaleX(0);transform-origin:left;transition:.4s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{transform:translateY(-10px);box-shadow:0 25px 60px rgba(0,0,0,.11)}
+.s-icon{width:65px;height:65px;background:linear-gradient(135deg,var(--blue),var(--light));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:1.4rem;box-shadow:0 8px 25px rgba(26,90,158,.22)}
+.s-title{font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:700;color:var(--deep);margin-bottom:.8rem}
+.s-desc{color:var(--g7);line-height:1.7;font-size:.95rem}
+
+/* ===== ACTIVITIES (GALLERY) ===== */
+.activities{padding:8rem 0;background:#fff}
+.activities-intro{max-width:1400px;margin:0 auto;padding:0 3rem}
+.acts-grid{max-width:1400px;margin:2rem auto 0;padding:0 3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.act-card{border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--deep),var(--blue));aspect-ratio:4/3;cursor:pointer;transition:.4s;border:2px dashed rgba(26,90,158,.2)}
+.act-card:hover{transform:scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,.15)}
+.act-card .act-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:.9rem;gap:.8rem;padding:1.5rem;text-align:center;transition:.3s}
+.act-card:hover .act-img-placeholder{color:#fff}
+.act-icon-big{font-size:3.5rem;animation:iconBounce 3s ease-in-out infinite}
+@keyframes iconBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.act-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,59,102,.95),transparent);padding:1.5rem 1.2rem .8rem;color:#fff;font-weight:600;font-size:1rem}
+.act-tag{display:inline-block;background:var(--orange);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .7rem;border-radius:50px;margin-bottom:.3rem}
+.acts-note{text-align:center;margin-top:2.5rem;color:var(--g7);font-size:.9rem;background:var(--g1);border-radius:12px;padding:1rem 2rem;display:inline-block}
+.acts-note-wrap{text-align:center;margin-top:1.5rem}
+
+/* ===== MISSION ===== */
+.mission{padding:8rem 0;background:var(--g1);position:relative}
+.mission-container{max-width:1400px;margin:0 auto;padding:0 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.mission-visual{position:relative}
+.mission-svg-wrap{border-radius:24px;overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.15);position:relative}
+.mission-badge{position:absolute;bottom:-20px;right:-20px;background:#fff;border-radius:16px;padding:1.2rem 1.5rem;box-shadow:0 10px 40px rgba(0,0,0,.12);display:flex;align-items:center;gap:.8rem;z-index:2}
+.mission-badge .badge-icon{font-size:2rem}
+.mission-badge .badge-text{font-size:.8rem;color:var(--g7)}
+.mission-badge .badge-num{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue)}
+.mission-content h2{font-family:'Sora',sans-serif;font-size:2.8rem;font-weight:800;color:var(--deep);margin-bottom:1.5rem;line-height:1.2}
+.mission-content p{color:var(--g7);font-size:1.05rem;line-height:1.8;margin-bottom:1.2rem}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.val-item{display:flex;align-items:flex-start;gap:.9rem;padding:1.2rem;background:#fff;border-radius:14px;border:1px solid var(--g2);transition:.3s}
+.val-item:hover{border-color:var(--orange);box-shadow:0 8px 25px rgba(242,129,29,.1)}
+.val-ico{width:44px;height:44px;background:linear-gradient(135deg,var(--orange),#ff9d4d);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.val-txt h4{font-weight:700;color:var(--deep);font-size:.95rem;margin-bottom:.2rem}
+.val-txt p{font-size:.85rem;color:var(--g7);margin:0}
+
+/* ===== IMPACT ===== */
+.impact{padding:8rem 0;background:var(--deep);color:#fff;position:relative;overflow:hidden}
+.impact::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(242,129,29,.12),transparent 60%),url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+.impact-container{max-width:1400px;margin:0 auto;padding:0 3rem;position:relative;z-index:2}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:0}
+.impact-card{text-align:center;padding:2.8rem 2rem;background:rgba(255,255,255,.05);border-radius:20px;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:.3s;position:relative;overflow:hidden}
+.impact-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--orange));transform:scaleX(0);transition:.4s}
+.impact-card:hover::before{transform:scaleX(1)}
+.impact-card:hover{background:rgba(255,255,255,.1);transform:translateY(-6px)}
+.impact-icon{font-size:3.5rem;margin-bottom:1.2rem;display:block}
+.impact-title{font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:700;margin-bottom:.8rem}
+.impact-desc{opacity:.88;line-height:1.7;font-size:.95rem}
+
+/* ===== ADVOCACY STRIP ===== */
+.advocacy{padding:5rem 0;background:linear-gradient(135deg,#0d3b66,#1a5a9e);overflow:hidden;position:relative}
+.advocacy::before{content:'ADVOCACY • SAFETY • HEALTH • ENVIRONMENT • ZERO HARM • COMMUNITY • ADVOCACY • SAFETY • HEALTH • ENVIRONMENT • ';position:absolute;white-space:nowrap;font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:rgba(255,255,255,.06);top:50%;transform:translateY(-50%);animation:marquee 25s linear infinite;letter-spacing:.3em}
+@keyframes marquee{from{transform:translateX(0) translateY(-50%)}to{transform:translateX(-50%) translateY(-50%)}}
+.advocacy-content{max-width:1400px;margin:0 auto;padding:0 3rem;position:relative;z-index:2;text-align:center}
+.advocacy-content h2{font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:1rem}
+.advocacy-content p{color:rgba(255,255,255,.85);font-size:1.1rem;margin-bottom:2.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+.advocacy-pills{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:.6rem 1.4rem;border-radius:50px;font-size:.9rem;font-weight:600;backdrop-filter:blur(8px);transition:.3s;cursor:default}
+.pill:hover{background:var(--orange);border-color:var(--orange)}
+
+/* ===== CTA / CONTACT ===== */
+.cta-section{padding:8rem 0;background:linear-gradient(135deg,var(--orange) 0%,#ff7b00 100%);text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.12),transparent 60%)}
+.cta-content{position:relative;z-index:2}
+.cta-content h2{font-family:'Sora',sans-serif;font-size:3.2rem;font-weight:800;margin-bottom:1rem;line-height:1.2}
+.cta-content p{font-size:1.2rem;margin-bottom:3rem;opacity:.95;max-width:650px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--orange);padding:1.1rem 3rem;border-radius:50px;font-weight:700;border:none;cursor:pointer;transition:.3s;font-size:1rem;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.btn-outline-w{background:transparent;color:#fff;padding:1.1rem 3rem;border-radius:50px;font-weight:700;border:2px solid #fff;cursor:pointer;transition:.3s;font-size:1rem;text-decoration:none}
+.btn-outline-w:hover{background:#fff;color:var(--orange)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--deep);color:#fff;padding:5rem 0 2rem}
+.footer-container{max-width:1400px;margin:0 auto;padding:0 3rem}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand h3{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:.8rem;background:linear-gradient(135deg,#fff,var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-brand p{opacity:.75;line-height:1.7;margin-bottom:1.5rem;font-size:.92rem}
+.socials{display:flex;gap:.8rem}
+.soc{width:42px;height:42px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s;cursor:pointer;text-decoration:none;font-size:1.1rem}
+.soc:hover{background:var(--orange);transform:translateY(-3px)}
+.footer-links h4{font-weight:700;margin-bottom:1.2rem;font-size:1rem;color:rgba(255,255,255,.9)}
+.footer-links ul{list-style:none}
+.footer-links li{margin-bottom:.7rem}
+.footer-links a{color:rgba(255,255,255,.7);text-decoration:none;transition:.3s;font-size:.9rem}
+.footer-links a:hover{color:var(--orange)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;opacity:.6;font-size:.85rem;flex-wrap:wrap;gap:.5rem}
+
+/* ===== MODALS ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:none;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(6px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:24px;max-width:550px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-header{background:linear-gradient(135deg,var(--deep),var(--blue));padding:2rem 2.5rem;color:#fff;border-radius:24px 24px 0 0;position:relative}
+.modal-header h2{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:.3rem}
+.modal-header p{opacity:.85;font-size:.95rem}
+.modal-close{position:absolute;top:1.2rem;right:1.5rem;background:rgba(255,255,255,.2);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+.modal-close:hover{background:rgba(255,255,255,.35)}
+.modal-body{padding:2.5rem}
+.donate-option{border:2px solid var(--g2);border-radius:16px;padding:1.5rem;margin-bottom:1rem;transition:.3s;cursor:default}
+.donate-option:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(26,90,158,.1)}
+.donate-option h3{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--deep);margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.donate-option .acc-num{font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--blue);background:var(--g1);padding:.4rem 1rem;border-radius:8px;display:inline-block;margin:.4rem 0;letter-spacing:.05em}
+.donate-option p{color:var(--g7);font-size:.88rem}
+.donate-note{background:#fff8f0;border:1px solid #ffd0a0;border-radius:12px;padding:1rem;margin-top:1.5rem;font-size:.88rem;color:#7a4a00}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-weight:600;color:var(--deep);margin-bottom:.4rem;font-size:.9rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.8rem 1rem;border:2px solid var(--g2);border-radius:10px;font-family:'Work Sans',sans-serif;font-size:.95rem;transition:.3s;outline:none;color:var(--g9)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue)}
+.form-group textarea{height:120px;resize:vertical}
+.btn-submit{background:linear-gradient(135deg,var(--blue),var(--light));color:#fff;padding:1rem 2.5rem;border-radius:50px;font-weight:700;border:none;cursor:pointer;transition:.3s;width:100%;font-size:1rem;margin-top:.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(26,90,158,.35)}
+.success-msg{display:none;text-align:center;padding:1.5rem;background:#f0fdf4;border:1px solid #86efac;border-radius:12px;color:#166534;margin-top:1rem}
+.success-msg .check{font-size:3rem;margin-bottom:.5rem}
+
+/* ===== ANIMATIONS ===== */
+.fade-up{opacity:0;transform:translateY(35px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;text-align:center}
+  .hero-text p{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-visual{display:none}
+  .mission-container{grid-template-columns:1fr;gap:3rem}
+  .stats-box{grid-template-columns:repeat(2,1fr)}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .footer-main{grid-template-columns:1fr 1fr;gap:2.5rem}
+}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-container{padding:0 1.5rem}
+  .hero-text h1{font-size:2.6rem}
+  .section-title{font-size:2rem}
+  .services-grid,.acts-grid{padding:0 1.5rem}
+  .stats-box{grid-template-columns:1fr 1fr;padding:1.5rem}
+  .impact-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+  .values-grid{grid-template-columns:1fr}
+  .footer-main{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .mission-container{padding:0 1.5rem}
+  .advocacy-content{padding:0 1.5rem}
+  .cta-content h2{font-size:2rem}
+  .modal-body{padding:1.5rem}
+  .modal-header{padding:1.5rem}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo-container">
-                <img src="logo.png" alt="Protevia International Logo" class="logo-img">    
-                <span class="logo-text">PROTEVIA</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#mission">About Us</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button class="cta-button">Get Involved</button></li>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- MODALS -->
+<!-- Donate Modal -->
+<div class="modal-overlay" id="donateModal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('donateModal')">✕</button>
+      <h2>💛 Support Our Mission</h2>
+      <p>Every contribution helps us save lives and create safer communities.</p>
+    </div>
+    <div class="modal-body">
+      <div class="donate-option">
+        <h3>📱 Mobile Money (Uganda)</h3>
+        <div class="acc-num">+256 778 731 329</div>
+        <p>Send via MTN Mobile Money or Airtel Money. Use the name <strong>Protevia International</strong> as reference.</p>
+      </div>
+      <div class="donate-option">
+        <h3>🏦 Bank Transfer — UGX Account</h3>
+        <div class="acc-num">6007387448</div>
+        <p>Uganda Shillings account. Contact us at <a href="mailto:info@protevia.org" style="color:var(--blue)">info@protevia.org</a> for full bank details and swift code.</p>
+      </div>
+      <div class="donate-option">
+        <h3>💵 Bank Transfer — USD Account</h3>
+        <div class="acc-num">6007453564</div>
+        <p>US Dollar account for international donors. Contact us for full correspondent bank details.</p>
+      </div>
+      <div class="donate-note">
+        🔒 <strong>Your donation is safe.</strong> We will confirm every donation by email or phone. For large transfers, please reach us first at <strong>info@protevia.org</strong> or <strong>+256 778 731 329</strong> so we can assist you directly.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Partner Modal -->
+<div class="modal-overlay" id="partnerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('partnerModal')">✕</button>
+      <h2>🤝 Partner With Us</h2>
+      <p>Let's work together to build a safer world for everyone.</p>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" placeholder="Your full name" id="p-name">
+      </div>
+      <div class="form-group">
+        <label>Organisation / Company</label>
+        <input type="text" placeholder="Organisation name (if applicable)">
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" placeholder="your@email.com" id="p-email">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+256 ...">
+      </div>
+      <div class="form-group">
+        <label>Partnership Type</label>
+        <select>
+          <option>Select partnership type</option>
+          <option>Corporate Partnership</option>
+          <option>Research & Academic Collaboration</option>
+          <option>Government / UN Agency</option>
+          <option>Community Partnership</option>
+          <option>Media & Advocacy</option>
+          <option>Funding / Grant Support</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Interest</label>
+        <textarea placeholder="Describe how you'd like to partner with Protevia International..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitPartner()">Send Partnership Request</button>
+      <div class="success-msg" id="partner-success">
+        <div class="check">✅</div>
+        <strong>Thank you!</strong><br>We've received your request and will be in touch within 2 business days.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Volunteer Modal -->
+<div class="modal-overlay" id="volunteerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('volunteerModal')">✕</button>
+      <h2>🙋 Volunteer With Us</h2>
+      <p>Join our team of safety advocates making real change on the ground.</p>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Skills / Background</label>
+        <select>
+          <option>Select your background</option>
+          <option>Health & Safety Professional</option>
+          <option>Environmental Scientist</option>
+          <option>Community Worker</option>
+          <option>Legal / Policy Advocate</option>
+          <option>Communications / Media</option>
+          <option>IT & Technology</option>
+          <option>Student</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Availability</label>
+        <select>
+          <option>Select availability</option>
+          <option>Full-time</option>
+          <option>Part-time (weekdays)</option>
+          <option>Weekends only</option>
+          <option>Flexible / Project-based</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Why do you want to volunteer?</label>
+        <textarea placeholder="Tell us about your motivation..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitVolunteer()">Submit Application</button>
+      <div class="success-msg" id="volunteer-success">
+        <div class="check">✅</div>
+        <strong>Application received!</strong><br>We'll review your details and contact you shortly. Welcome aboard!
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Protevia International" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">PROTEVIA</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#mission">About Us</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="nav-cta" onclick="openModal('donateModal')">Donate Now</button></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#activities" onclick="closeMenu()">Activities</a>
+    <a href="#mission" onclick="closeMenu()">About Us</a>
+    <a href="#impact" onclick="closeMenu()">Impact</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <button onclick="openModal('donateModal');closeMenu()">Donate Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">🟢 Actively Working Across Africa</div>
+      <h1>Protecting Lives,<br><span class="orange">Safety Beyond Borders</span></h1>
+      <p>Protevia International is a global NGO dedicated to advancing health, safety, and environmental standards across communities worldwide. Together, we build safer futures.</p>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" onclick="openModal('donateModal')">Donate Now</button>
+        <button class="btn-hero-secondary" onclick="openModal('partnerModal')">Partner With Us</button>
+        <a href="#mission" class="btn-hero-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="shield-wrap">
+        <div class="shield-ring ring1"></div>
+        <div class="shield-ring ring2"></div>
+        <div class="shield-ring ring3"></div>
+        <svg class="shield-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(255,255,255,.95)"/>
+              <stop offset="100%" style="stop-color:rgba(255,255,255,.6)"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="5" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <path d="M100,15 L165,48 L165,115 Q165,168 100,185 Q35,168 35,115 L35,48 Z" fill="url(#sg)" stroke="rgba(255,255,255,.85)" stroke-width="2.5" filter="url(#glow)"/>
+          <path d="M72,97 L90,115 L128,72" fill="none" stroke="#f2811d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="100" cy="100" r="48" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-dasharray="6 4"/>
+        </svg>
+        <div class="floating-tag tag1">🛡️ Vision Zero</div>
+        <div class="floating-tag tag2">🌍 50+ Countries</div>
+        <div class="floating-tag tag3">❤️ 500K+ Lives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-box">
+    <div class="stat-item"><span class="stat-num" data-target="50" data-suffix="+">0+</span><span class="stat-lbl">Countries Served</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="500" data-suffix="K+">0K+</span><span class="stat-lbl">Lives Impacted</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="1000" data-suffix="+">0+</span><span class="stat-lbl">Safety Programs</span></div>
+    <div class="stat-item"><span class="stat-num" data-target="200" data-suffix="+">0+</span><span class="stat-lbl">Partner Organisations</span></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div style="max-width:1400px;margin:0 auto;padding:0 3rem">
+    <div class="section-header">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Comprehensive Safety Solutions</h2>
+      <p class="section-sub">We deliver expert HSE services that protect people, communities, and the environment wherever they are needed most.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up"><div class="s-icon">🏥</div><h3 class="s-title">Occupational Health</h3><p class="s-desc">Implementing workplace health programs that protect employees and promote wellness through preventive care, health screenings, and robust safety protocols.</p></div>
+    <div class="service-card fade-up"><div class="s-icon">⚠️</div><h3 class="s-title">Safety Management</h3><p class="s-desc">Developing comprehensive safety systems and training programs that reduce workplace hazards and create cultures of safety awareness across industries.</p></div>
+    <div class="service-card fade-up"><div class="s-icon">🌍</div><h3 class="s-title">Environmental Protection</h3><p class="s-desc">Advancing sustainable practices and environmental compliance to protect ecosystems and communities from pollution and environmental degradation.</p></div>
+    <div class="service-card fade-up"><div class="s-icon">📚</div><h3 class="s-title">Training & Education</h3><p class="s-desc">Empowering communities through comprehensive HSE training, certification programs, and educational workshops across all sectors and age groups.</p></div>
+    <div class="service-card fade-up"><div class="s-icon">🔍</div><h3 class="s-title">Risk Assessment</h3><p class="s-desc">Conducting thorough hazard evaluations and implementing evidence-based strategies to mitigate risks before they cause harm.</p></div>
+    <div class="service-card fade-up"><div class="s-icon">📢</div><h3 class="s-title">Advocacy & Policy</h3><p class="s-desc">Championing safety legislation, influencing policy change, and advocating for communities' right to safe workplaces and clean environments.</p></div>
+  </div>
+</section>
+
+<!-- ACTIVITIES GALLERY -->
+<section class="activities" id="activities">
+  <div class="activities-intro">
+    <div class="section-header">
+      <div class="section-label">Our Activities</div>
+      <h2 class="section-title">From the Field</h2>
+      <p class="section-sub">Our advocacy and safety work in action — across workplaces, schools, communities, and beyond.</p>
+    </div>
+  </div>
+  <div class="acts-grid">
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#0d3b66,#1a5a9e)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">🏭</span>
+        <span><strong>Add Your Photo Here</strong><br>Workplace Safety Training</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Training</span><br>Workplace Safety Programs</div>
+    </div>
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#7b341e,#c05621)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">📢</span>
+        <span><strong>Add Your Photo Here</strong><br>Community Advocacy</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Advocacy</span><br>Community Safety Campaigns</div>
+    </div>
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#1a4731,#276749)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">🌿</span>
+        <span><strong>Add Your Photo Here</strong><br>Environmental Programs</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Environment</span><br>Environmental Protection</div>
+    </div>
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#44337a,#6b46c1)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">🎓</span>
+        <span><strong>Add Your Photo Here</strong><br>School Safety Education</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Education</span><br>School Safety Outreach</div>
+    </div>
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#702459,#b83280)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">🤝</span>
+        <span><strong>Add Your Photo Here</strong><br>Partnerships & Events</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Partnership</span><br>Stakeholder Engagements</div>
+    </div>
+    <div class="act-card fade-up" style="background:linear-gradient(135deg,#1a3a5c,#2b6cb0)">
+      <div class="act-img-placeholder">
+        <span class="act-icon-big">📋</span>
+        <span><strong>Add Your Photo Here</strong><br>Research & Reporting</span>
+      </div>
+      <div class="act-label"><span class="act-tag">Research</span><br>Safety Research & Reports</div>
+    </div>
+  </div>
+  <div class="acts-note-wrap">
+    <span class="acts-note">📸 To add real photos: replace each card with <code>&lt;img src="your-photo.jpg"&gt;</code> — slots are ready for your images!</span>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="mission-container">
+    <div class="mission-visual fade-up">
+      <div class="mission-svg-wrap">
+        <svg width="100%" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#0d3b66"/>
+              <stop offset="100%" style="stop-color:#4a90d9"/>
+            </linearGradient>
+            <linearGradient id="mg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#f2811d"/>
+              <stop offset="100%" style="stop-color:#ff9d4d"/>
+            </linearGradient>
+          </defs>
+          <rect width="520" height="420" fill="url(#mg)" rx="24"/>
+          <!-- Globe lines -->
+          <ellipse cx="260" cy="210" rx="130" ry="130" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+          <ellipse cx="260" cy="210" rx="80" ry="130" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+          <line x1="130" y1="210" x2="390" y2="210" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+          <line x1="130" y1="160" x2="390" y2="160" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="130" y1="260" x2="390" y2="260" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <!-- Shield large -->
+          <path d="M260,80 L320,110 L320,175 Q320,230 260,248 Q200,230 200,175 L200,110 Z" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+          <path d="M240,158 L254,172 L282,144" fill="none" stroke="url(#mg2)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- People silhouettes -->
+          <circle cx="140" cy="300" r="14" fill="rgba(255,255,255,.7)"/>
+          <path d="M130,315 Q140,330 150,315 L155,345 L125,345 Z" fill="rgba(255,255,255,.6)"/>
+          <circle cx="200" cy="295" r="14" fill="rgba(255,165,0,.8)"/>
+          <path d="M190,310 Q200,325 210,310 L215,345 L185,345 Z" fill="rgba(255,165,0,.7)"/>
+          <circle cx="260" cy="300" r="14" fill="rgba(255,255,255,.7)"/>
+          <path d="M250,315 Q260,330 270,315 L275,345 L245,345 Z" fill="rgba(255,255,255,.6)"/>
+          <circle cx="320" cy="295" r="14" fill="rgba(255,165,0,.8)"/>
+          <path d="M310,310 Q320,325 330,310 L335,345 L305,345 Z" fill="rgba(255,165,0,.7)"/>
+          <circle cx="380" cy="300" r="14" fill="rgba(255,255,255,.7)"/>
+          <path d="M370,315 Q380,330 390,315 L395,345 L365,345 Z" fill="rgba(255,255,255,.6)"/>
+          <!-- Text -->
+          <text x="260" y="390" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="14" font-weight="700" font-family="Sora">SAFETY BEYOND BORDERS</text>
+        </svg>
+      </div>
+      <div class="mission-badge">
+        <span class="badge-icon">🏆</span>
+        <div>
+          <div class="badge-num">Est. 2020</div>
+          <div class="badge-text">Vision Zero Advocate</div>
         </div>
-    </nav>
+      </div>
+    </div>
+    <div class="mission-content fade-up">
+      <div class="section-label">Who We Are</div>
+      <h2>Our Mission & Vision</h2>
+      <p>At Protevia International, we believe that everyone deserves to work and live in safe, healthy environments. Our mission is to eliminate preventable workplace injuries, death, and environmental hazards through education, advocacy, and action.</p>
+      <p>In line with the Vision Zero philosophy, we envision a world where safety transcends borders — where communities are empowered with knowledge, and where sustainable practices protect both people and planet for generations to come.</p>
+      <div class="values-grid">
+        <div class="val-item"><div class="val-ico">✅</div><div class="val-txt"><h4>Excellence</h4><p>Delivering world-class safety standards</p></div></div>
+        <div class="val-item"><div class="val-ico">💡</div><div class="val-txt"><h4>Innovation</h4><p>Pioneering new safety solutions</p></div></div>
+        <div class="val-item"><div class="val-ico">🤝</div><div class="val-txt"><h4>Collaboration</h4><p>Building global partnerships</p></div></div>
+        <div class="val-item"><div class="val-ico">🌿</div><div class="val-txt"><h4>Sustainability</h4><p>Protecting our shared environment</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>
-                    Protecting Lives,
-                    <span>Safety Beyond Borders</span>
-                </h1>
-                <p>
-                    Protevia International is a global NGO dedicated to advancing health, safety, and environmental standards across communities worldwide. Together, we build safer futures.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#mission" class="btn-primary">Learn More</a>
-                    <a href="#contact" class="btn-secondary">Partner With Us</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <svg class="shield-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:rgba(255,255,255,0.9);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-                        </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                            <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    <path d="M100,20 L160,50 L160,110 Q160,160 100,180 Q40,160 40,110 L40,50 Z" 
-                          fill="url(#shieldGrad)" 
-                          stroke="rgba(255,255,255,0.8)" 
-                          stroke-width="3"
-                          filter="url(#glow)"/>
-                    <path d="M75,95 L90,110 L125,75" 
-                          fill="none" 
-                          stroke="rgba(242,129,29,1)" 
-                          stroke-width="6" 
-                          stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                    <circle cx="100" cy="100" r="45" 
-                            fill="none" 
-                            stroke="rgba(255,255,255,0.4)" 
-                            stroke-width="2"/>
-                </svg>
-            </div>
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-container">
+    <div class="section-header">
+      <div class="section-label" style="color:var(--orange)">Our Impact</div>
+      <h2 class="section-title" style="color:#fff">Creating Global Impact</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.8)">Through dedication and collaboration, we're making the world a safer place, one community at a time.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card fade-up"><span class="impact-icon">🎯</span><h3 class="impact-title">Prevention First</h3><p class="impact-desc">Proactive programs that prevent accidents before they happen, saving lives and reducing suffering worldwide.</p></div>
+      <div class="impact-card fade-up"><span class="impact-icon">👥</span><h3 class="impact-title">Community Empowerment</h3><p class="impact-desc">Training local leaders and workers to become safety champions in their own communities across Africa and beyond.</p></div>
+      <div class="impact-card fade-up"><span class="impact-icon">📊</span><h3 class="impact-title">Measurable Results</h3><p class="impact-desc">Data-driven approaches that demonstrate real improvements in safety metrics and environmental quality across regions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVOCACY STRIP -->
+<section class="advocacy">
+  <div class="advocacy-content">
+    <div class="section-label" style="color:rgba(255,255,255,.7)">Our Cause</div>
+    <h2>Advocating for a Safer World</h2>
+    <p>We champion policy change, raise awareness, and mobilise communities to demand their right to safe workplaces and clean environments.</p>
+    <div class="advocacy-pills">
+      <span class="pill">🛡️ Workplace Safety</span>
+      <span class="pill">🌿 Environmental Justice</span>
+      <span class="pill">🏥 Public Health</span>
+      <span class="pill">📜 Policy Reform</span>
+      <span class="pill">👩‍🏫 Safety Education</span>
+      <span class="pill">⚖️ Workers' Rights</span>
+      <span class="pill">🔥 Hazard Prevention</span>
+      <span class="pill">🌍 Vision Zero</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-content">
+    <h2>Join Us in Making a Difference</h2>
+    <p>Your support helps us extend our reach and save more lives. Together, we can build a safer world for every person.</p>
+    <div class="cta-btns">
+      <button class="btn-white" onclick="openModal('partnerModal')">🤝 Become a Partner</button>
+      <button class="btn-outline-w" onclick="openModal('donateModal')">💛 Donate Now</button>
+      <button class="btn-outline-w" onclick="openModal('volunteerModal')">🙋 Volunteer</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h3>PROTEVIA INTERNATIONAL</h3>
+        <p>Safety Beyond Borders — Committed to creating healthier, safer environments for all communities worldwide.</p>
+        <div class="socials">
+          <a class="soc" href="https://facebook.com" target="_blank" rel="noopener" title="Facebook">📘</a>
+          <a class="soc" href="https://twitter.com" target="_blank" rel="noopener" title="Twitter / X">🐦</a>
+          <a class="soc" href="https://instagram.com" target="_blank" rel="noopener" title="Instagram">📷</a>
+          <a class="soc" href="https://linkedin.com" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+          <a class="soc" href="https://youtube.com" target="_blank" rel="noopener" title="YouTube">▶️</a>
         </div>
-    </section>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#mission">About Us</a></li>
+          <li><a href="#impact">Our Impact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#" onclick="openModal('volunteerModal');return false">Volunteer</a></li>
+          <li><a href="#" onclick="openModal('partnerModal');return false">Partner With Us</a></li>
+          <li><a href="#" onclick="openModal('donateModal');return false">Donate</a></li>
+          <li><a href="mailto:info@protevia.org">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="mailto:info@protevia.org">info@protevia.org</a></li>
+          <li><a href="tel:+256704032231">+256 704 032 231</a></li>
+          <li><a href="tel:+256778731329">+256 778 731 329</a></li>
+          <li><a href="#">Kampala, Uganda</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Protevia International. All rights reserved.</span>
+      <span><a href="#" style="color:inherit;text-decoration:none">Privacy Policy</a> · <a href="#" style="color:inherit;text-decoration:none">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number">50+</span>
-                <span class="stat-label">Countries Served</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">500K+</span>
-                <span class="stat-label">Lives Impacted</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">1000+</span>
-                <span class="stat-label">Safety Programs</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">200+</span>
-                <span class="stat-label">Partner Organizations</span>
-            </div>
-        </div>
-    </section>
+<script>
+// ===== PARTICLES =====
+(function(){
+  const container = document.getElementById('particles');
+  const colors = ['rgba(26,90,158,.5)','rgba(242,129,29,.4)','rgba(74,144,217,.4)','rgba(255,255,255,.3)'];
+  for(let i=0;i<35;i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random()*10+4;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*20+15}s;
+      animation-delay:${Math.random()*20}s;
+    `;
+    container.appendChild(p);
+  }
+})();
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-header">
-            <div class="section-label">What We Do</div>
-            <h2 class="section-title">Comprehensive Safety Solutions</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🏥</div>
-                <h3 class="service-title">Occupational Health</h3>
-                <p class="service-description">
-                    Implementing workplace health programs that protect employees and promote wellness through preventive care, health screenings, and safety protocols.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚠️</div>
-                <h3 class="service-title">Safety Management</h3>
-                <p class="service-description">
-                    Developing comprehensive safety systems and training programs that reduce workplace hazards and create cultures of safety awareness.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🌍</div>
-                <h3 class="service-title">Environmental Protection</h3>
-                <p class="service-description">
-                    Advancing sustainable practices and environmental compliance to protect ecosystems and communities from pollution and environmental degradation.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📚</div>
-                <h3 class="service-title">Training & Education</h3>
-                <p class="service-description">
-                    Empowering communities through comprehensive HSE training, certification programs, and educational workshops across all sectors.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔍</div>
-                <h3 class="service-title">Risk Assessment</h3>
-                <p class="service-description">
-                    Conducting thorough evaluations to identify potential hazards and implement evidence-based strategies to mitigate risks effectively.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🤝</div>
-                <h3 class="service-title">Community Outreach</h3>
-                <p class="service-description">
-                    Building partnerships with local communities to address unique safety challenges and promote sustainable health and safety practices including capacity building.
-                </p>
-            </div>
-        </div>
-    </section>
+// ===== NAV SCROLL =====
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+});
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="mission-container">
-            <div class="mission-image">
-                <svg width="100%" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#1a5a9e;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <rect width="500" height="400" fill="url(#bgGrad)" rx="20"/>
-                    <circle cx="250" cy="200" r="80" fill="rgba(242,129,29,0.3)" opacity="0.6"/>
-                    <circle cx="250" cy="200" r="60" fill="rgba(255,255,255,0.2)" opacity="0.8"/>
-                    <path d="M250,160 L270,200 L250,240 L230,200 Z" fill="white" opacity="0.9"/>
-                    <circle cx="150" cy="120" r="30" fill="rgba(255,255,255,0.15)"/>
-                    <circle cx="350" cy="280" r="40" fill="rgba(255,255,255,0.15)"/>
-                    <text x="250" y="350" text-anchor="middle" fill="white" font-size="24" font-weight="700" font-family="Sora">PROTEVIA</text>
-                </svg>
-            </div>
-            <div class="mission-content">
-                <h2>Our Mission & Vision</h2>
-                <p>
-                    At Protevia International, we believe that everyone deserves to work and live in safe, healthy environments. Our mission is to eliminate preventable workplace injuries, death and environmental hazards through education, advocacy, and action.
-                </p>
-                <p>
-                    In line with vision zero philosophy, we envision a world where safety transcends borders, where communities are empowered with knowledge, and where sustainable practices protect both people and planet for generations to come.
-                </p>
-                <div class="mission-values">
-                    <div class="value-item">
-                        <div class="value-icon">✓</div>
-                        <div class="value-text">
-                            <h4>Excellence</h4>
-                            <p>Delivering world-class safety standards</p>
-                        </div>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">🌟</div>
-                        <div class="value-text">
-                            <h4>Innovation</h4>
-                            <p>Pioneering new safety solutions</p>
-                        </div>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">🤝</div>
-                        <div class="value-text">
-                            <h4>Collaboration</h4>
-                            <p>Building global partnerships</p>
-                        </div>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">💚</div>
-                        <div class="value-text">
-                            <h4>Sustainability</h4>
-                            <p>Protecting our shared environment</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// ===== MOBILE MENU =====
+function toggleMenu(){
+  const h = document.getElementById('hamburger');
+  const n = document.getElementById('mobileNav');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileNav').classList.remove('open');
+}
 
-    <!-- Impact Section -->
-    <section class="impact" id="impact">
-        <div class="impact-container">
-            <div class="impact-header">
-                <h2>Creating Global Impact</h2>
-                <p>Through dedication and collaboration, we're making the world a safer place, one community at a time.</p>
-            </div>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <div class="impact-icon">🎯</div>
-                    <h3 class="impact-title">Prevention First</h3>
-                    <p class="impact-description">
-                        Proactive programs that prevent accidents before they happen, saving lives and reducing suffering worldwide.
-                    </p>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-icon">👥</div>
-                    <h3 class="impact-title">Community Empowerment</h3>
-                    <p class="impact-description">
-                        Training local leaders and workers to become safety champions in their own communities.
-                    </p>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-icon">📊</div>
-                    <h3 class="impact-title">Measurable Results</h3>
-                    <p class="impact-description">
-                        Data-driven approaches that demonstrate real improvements in safety metrics and environmental quality.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+// ===== MODALS =====
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')});
+});
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-content">
-            <h2>Join Us in Making a Difference</h2>
-            <p>Your support helps us extend our reach and save more lives. Together, we can build a safer world.</p>
-            <div class="cta-buttons">
-                <a href="#" class="btn-white">Become a Partner</a>
-                <a href="#" class="btn-outline-white">Donate Now</a>
-            </div>
-        </div>
-    </section>
+// ===== SUBMIT HANDLERS =====
+function submitPartner(){
+  const name=document.getElementById('p-name').value;
+  const email=document.getElementById('p-email').value;
+  if(!name||!email){alert('Please fill in your name and email.');return;}
+  document.getElementById('partner-success').style.display='block';
+}
+function submitVolunteer(){
+  document.getElementById('volunteer-success').style.display='block';
+}
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <h3>PROTEVIA INTERNATIONAL</h3>
-                    <p>Safety Beyond Borders - Committed to creating healthier, safer environments for all.</p>
-                    <div class="social-links">
-                        <div class="social-icon">📘</div>
-                        <div class="social-icon">🐦</div>
-                        <div class="social-icon">📷</div>
-                        <div class="social-icon">💼</div>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#mission">About Us</a></li>
-                        <li><a href="#impact">Impact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Get Involved</h4>
-                    <ul>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Partner With Us</a></li>
-                        <li><a href="#">Donate</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:info@protevia.org">info@protevia.org</a></li>
-                        <li><a href="tel:+256778731329">+256704032231</a></li>
-                        <li><a href="#">Press & Media</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Protevia International. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
-        </div>
-    </footer>
+// ===== STAT COUNTER =====
+const statsObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.stat-num').forEach(el=>{
+        const target=parseInt(el.dataset.target);
+        const suffix=el.dataset.suffix||'';
+        let current=0;
+        const step=target/80;
+        const timer=setInterval(()=>{
+          current=Math.min(current+step,target);
+          el.textContent=Math.floor(current)+suffix;
+          if(current>=target)clearInterval(timer);
+        },25);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.5});
+const statsBox=document.querySelector('.stats-box');
+if(statsBox)statsObserver.observe(statsBox);
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+// ===== FADE IN ON SCROLL =====
+const fadeObserver = new IntersectionObserver(entries=>{
+  entries.forEach((entry,i)=>{
+    if(entry.isIntersecting){
+      setTimeout(()=>entry.target.classList.add('visible'),i*80);
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>fadeObserver.observe(el));
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animate stats on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const animateValue = (element, start, end, duration) => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.textContent = value.toLocaleString() + (element.dataset.suffix || '');
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        };
-
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const text = stat.textContent;
-                        const match = text.match(/(\d+)/);
-                        if (match) {
-                            const endValue = parseInt(match[1]);
-                            const suffix = text.replace(/\d+/, '');
-                            stat.dataset.suffix = suffix;
-                            animateValue(stat, 0, endValue, 2000);
-                        }
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const statsSection = document.querySelector('.stats-container');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // Intersection Observer for fade-in animations
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.service-card, .impact-card, .value-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            fadeObserver.observe(el);
-        });
-    </script>
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
 </body>
 </html>
